@@ -1,69 +1,59 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AdNova Dashboard</title>
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background:#f2f2f2;
-            margin:0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
 
-        .header{
-            background:#111827;
-            color:white;
-            padding:20px;
-            text-align:center;
-        }
+<link rel="stylesheet" href="style.css">
 
-        .box{
-            background:white;
-            margin:20px;
-            padding:20px;
-            border-radius:10px;
-            box-shadow:0 0 10px #ccc;
-        }
-
-        .btn{
-            background:#2563eb;
-            color:white;
-            padding:12px 20px;
-            border:none;
-            border-radius:5px;
-            text-decoration:none;
-        }
-
-        .balance{
-            font-size:25px;
-            color:green;
-        }
-    </style>
 </head>
-
 <body>
 
-<div class="header">
-    <h1>AdNova Dashboard</h1>
-    <p>Welcome User</p>
+<div class="sidebar">
+
+<h2>Admin Panel</h2>
+
+<a href="#">🏠 Dashboard</a>
+<a href="#">👥 Users</a>
+<a href="#">💳 Deposits</a>
+<a href="#">💸 Withdrawals</a>
+<a href="#">⚙️ Settings</a>
+<a href="#">🚪 Logout</a>
+
 </div>
 
-<div class="box">
-    <h2>Your Balance</h2>
-    <p class="balance">Rs 0</p>
+<div class="main">
+
+<h1>Admin Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Users</h3>
+<h2 id="users">0</h2>
 </div>
 
-<div class="box">
-    <h2>Membership Plan</h2>
-    <p>Current Plan: No Plan</p>
-    <a class="btn" href="#">Buy Plan</a>
+<div class="card">
+<h3>Total Balance</h3>
+<h2 id="balance">₹0</h2>
 </div>
 
-<div class="box">
-    <h2>Account</h2>
-    <p>Name: User</p>
-    <p>Status: Active</p>
+<div class="card">
+<h3>Deposit Requests</h3>
+<h2 id="deposit">0</h2>
 </div>
+
+<div class="card">
+<h3>Withdraw Requests</h3>
+<h2 id="withdraw">0</h2>
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
