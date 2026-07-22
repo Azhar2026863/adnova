@@ -7,75 +7,78 @@
 <title>AdNova Plans</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #ffffff;
-    text-align: center;
+*{
+    box-sizing:border-box;
 }
 
-.header {
-    background: #0077ff;
-    color: white;
-    padding: 20px;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#ffffff;
+    text-align:center;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 30px;
+.header{
+    background:#0077ff;
+    color:white;
+    padding:20px;
 }
 
-.header p {
-    margin: 8px 0 0;
-    font-size: 16px;
+.header h1{
+    margin:0;
+    font-size:30px;
 }
 
-.container {
-    padding: 25px 15px;
+.header p{
+    margin:8px 0 0;
 }
 
-h2 {
-    color: #333;
-    margin-bottom: 25px;
+.container{
+    padding:25px 15px;
 }
 
-.plan {
-    width: 90%;
-    max-width: 400px;
-    margin: 18px auto;
-    padding: 25px 15px;
-    background: white;
-    border: 1px solid #ffb6c1;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+h2{
+    color:#333;
+    margin-bottom:25px;
 }
 
-.plan h3 {
-    margin: 0 0 15px;
-    font-size: 22px;
-    color: #333;
+.plan{
+    width:90%;
+    max-width:400px;
+    margin:18px auto;
+    padding:25px 15px;
+    background:white;
+    border:1px solid #ffb6c1;
+    border-radius:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
 
-.price {
-    font-size: 28px;
-    font-weight: bold;
-    color: #0077ff;
-    margin-bottom: 20px;
+.plan h3{
+    margin:0 0 15px;
+    font-size:22px;
+    color:#333;
 }
 
-.plan button {
-    width: 100%;
-    padding: 12px;
-    background: #0077ff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
+.price{
+    font-size:28px;
+    font-weight:bold;
+    color:#0077ff;
+    margin-bottom:20px;
 }
 
-.plan button:hover {
-    background: #005fcc;
+.plan button{
+    width:100%;
+    padding:12px;
+    background:#0077ff;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.plan button:hover{
+    background:#005fcc;
 }
 </style>
 </head>
@@ -89,39 +92,85 @@ h2 {
 
 <div class="container">
 
-    <h2>Available Plans</h2>
+<h2>Available Plans</h2>
 
-    <div class="plan">
-        <h3>YouTube Silver</h3>
-        <div class="price">Rs 540</div>
-        <button>Select Plan</button>
-    </div>
+<div class="plan">
+    <h3>YouTube Silver</h3>
+    <div class="price">Rs 540</div>
 
-    <div class="plan">
-        <h3>YouTube Gold</h3>
-        <div class="price">Rs 1040</div>
-        <button>Select Plan</button>
-    </div>
+    <button onclick="selectPlan('YouTube Silver','Rs 540')">
+        Select Plan
+    </button>
+</div>
 
-    <div class="plan">
-        <h3>YouTube Stone</h3>
-        <div class="price">Rs 1540</div>
-        <button>Select Plan</button>
-    </div>
 
-    <div class="plan">
-        <h3>YouTube Platinum</h3>
-        <div class="price">Rs 2540</div>
-        <button>Select Plan</button>
-    </div>
+<div class="plan">
+    <h3>YouTube Gold</h3>
+    <div class="price">Rs 1040</div>
 
-    <div class="plan">
-        <h3>YouTube Diamond</h3>
-        <div class="price">Rs 3540</div>
-        <button>Select Plan</button>
-    </div>
+    <button onclick="selectPlan('YouTube Gold','Rs 1040')">
+        Select Plan
+    </button>
+</div>
+
+
+<div class="plan">
+    <h3>YouTube Stone</h3>
+    <div class="price">Rs 1540</div>
+
+    <button onclick="selectPlan('YouTube Stone','Rs 1540')">
+        Select Plan
+    </button>
+</div>
+
+
+<div class="plan">
+    <h3>YouTube Platinum</h3>
+    <div class="price">Rs 2540</div>
+
+    <button onclick="selectPlan('YouTube Platinum','Rs 2540')">
+        Select Plan
+    </button>
+</div>
+
+
+<div class="plan">
+    <h3>YouTube Diamond</h3>
+    <div class="price">Rs 3540</div>
+
+    <button onclick="selectPlan('YouTube Diamond','Rs 3540')">
+        Select Plan
+    </button>
+</div>
 
 </div>
+
+
+<script>
+
+function selectPlan(planName, planPrice){
+
+    const selectedPlan = {
+
+        plan: planName,
+
+        price: planPrice
+
+    };
+
+    localStorage.setItem(
+
+        "adnovaSelectedPlan",
+
+        JSON.stringify(selectedPlan)
+
+    );
+
+    window.location.href = "payment.html";
+
+}
+
+</script>
 
 </body>
 </html>
