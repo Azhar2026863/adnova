@@ -1,25 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f5f5;
+}
+.sidebar{
+    width:220px;
+    height:100vh;
+    background:#222;
+    color:#fff;
+    position:fixed;
+    padding-top:20px;
+}
+.sidebar h2{
+    text-align:center;
+}
+.sidebar a{
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    padding:15px;
+}
+.sidebar a:hover{
+    background:#444;
+}
+.main{
+    margin-left:230px;
+    padding:20px;
+}
+.cards{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+.card{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    width:220px;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+.card h3{
+    margin:0;
+}
+.card h2{
+    color:green;
+}
+</style>
 
 </head>
 <body>
 
 <div class="sidebar">
-
 <h2>Admin Panel</h2>
 
-<a href="dashboard.html">🏠 Dashboard</a>
-<a href="users.html">👥 Users</a>
-<a href="deposits.html">💳 Deposits</a>
-<a href="withdrawals.html">💸 Withdrawals</a>
-<a href="settings.html">⚙️ Settings</a>
-<a href="index.html">🚪 Logout</a>
+<a href="#">Dashboard</a>
+<a href="#">Users</a>
+<a href="#">Deposits</a>
+<a href="#">Withdrawals</a>
+<a href="#">Settings</a>
+<a href="index.html">Logout</a>
 
 </div>
 
@@ -31,29 +78,27 @@
 
 <div class="card">
 <h3>Total Users</h3>
-<h2 id="users">0</h2>
+<h2>0</h2>
 </div>
 
 <div class="card">
 <h3>Total Balance</h3>
-<h2 id="balance">₹0</h2>
+<h2>Rs.0</h2>
 </div>
 
 <div class="card">
 <h3>Deposit Requests</h3>
-<h2 id="deposit">0</h2>
+<h2>0</h2>
 </div>
 
 <div class="card">
-<h3>Withdraw Requests</h3>
-<h2 id="withdraw">0</h2>
+<h3>Withdrawal Requests</h3>
+<h2>0</h2>
 </div>
 
 </div>
 
 </div>
-
-<script src="script.js"></script>
 
 </body>
 </html>
