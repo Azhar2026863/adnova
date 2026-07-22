@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Payment - AdNova</title>
+<title>AdNova Payment</title>
 
 <style>
 *{
@@ -20,7 +20,7 @@ body{
 }
 
 .header{
-    background:#2563eb;
+    background:#0077ff;
     color:white;
     text-align:center;
     padding:20px;
@@ -29,14 +29,14 @@ body{
 .container{
     width:90%;
     max-width:500px;
-    margin:30px auto;
+    margin:25px auto;
 }
 
 .box{
     background:white;
     padding:25px;
     border-radius:12px;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
+    box-shadow:0 3px 15px rgba(0,0,0,.1);
 }
 
 h2{
@@ -44,30 +44,44 @@ h2{
     margin-bottom:20px;
 }
 
-.plan{
-    background:#f1f5f9;
-    padding:15px;
+.payment-info{
+    background:#eef5ff;
+    padding:18px;
     border-radius:8px;
     margin-bottom:20px;
 }
 
-.plan p{
-    margin:8px 0;
+.payment-info p{
+    margin:10px 0;
+    font-size:16px;
+}
+
+.amount{
+    font-size:24px;
+    font-weight:bold;
+    color:#0077ff;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
 }
 
 input{
     width:100%;
     padding:12px;
-    margin:8px 0;
     border:1px solid #ccc;
     border-radius:6px;
+    font-size:15px;
 }
 
 button{
     width:100%;
-    padding:12px;
-    margin-top:15px;
-    background:#2563eb;
+    padding:13px;
+    margin-top:20px;
+    background:#0077ff;
     color:white;
     border:none;
     border-radius:6px;
@@ -75,8 +89,8 @@ button{
     cursor:pointer;
 }
 
-.back{
-    background:#6b7280;
+button:hover{
+    background:#005fcc;
 }
 
 .message{
@@ -90,28 +104,49 @@ button{
 <body>
 
 <div class="header">
-<h1>AdNova Payment</h1>
+    <h1>AdNova Payment</h1>
 </div>
 
 <div class="container">
 
 <div class="box">
 
-<h2>Confirm Your Plan</h2>
+<h2>Complete Your Payment</h2>
 
-<div class="plan">
+<div class="payment-info">
 
-<p><strong>Plan:</strong>
+<p>
+<strong>Selected Package:</strong>
 <span id="planName">Loading...</span>
 </p>
 
-<p><strong>Price:</strong>
-<span id="planPrice">Loading...</span>
+<p>
+<strong>Payment Amount:</strong>
+<span class="amount" id="planPrice">Loading...</span>
+</p>
+
+<hr>
+
+<p>
+<strong>Payment Method:</strong>
+EasyPaisa
+</p>
+
+<p>
+<strong>Account Name:</strong>
+Muhammad Sajid
+</p>
+
+<p>
+<strong>Account Number:</strong>
+03482529433
 </p>
 
 </div>
 
 <form id="paymentForm">
+
+<label>Transaction ID</label>
 
 <input
 type="text"
@@ -120,10 +155,12 @@ placeholder="Enter Transaction ID"
 required
 >
 
+<label>Payment Screenshot</label>
+
 <input
-type="text"
-id="paymentMethod"
-placeholder="Payment Method (e.g. JazzCash)"
+type="file"
+id="paymentScreenshot"
+accept="image/*"
 required
 >
 
@@ -132,10 +169,6 @@ Submit Payment
 </button>
 
 </form>
-
-<button class="back" onclick="goBack()">
-Back to Plans
-</button>
 
 <div class="message" id="message"></div>
 
@@ -153,13 +186,13 @@ JSON.parse(localStorage.getItem("adnovaSelectedPlan"));
 
 if(!loggedInUser){
 
-window.location.href="login.html";
+window.location.href = "login.html";
 
 }
 
 if(!selectedPlan){
 
-window.location.href="plans.html";
+window.location.href = "plans.html";
 
 }
 
@@ -171,22 +204,33 @@ selectedPlan.price;
 
 
 document.getElementById("paymentForm")
-.addEventListener("submit",function(e){
+.addEventListener("submit", function(e){
 
 e.preventDefault();
 
 const transactionId =
 document.getElementById("transactionId").value.trim();
 
-const paymentMethod =
-document.getElementById("paymentMethod").value.trim();
+const screenshot =
+document.getElementById("paymentScreenshot").files[0];
+
+if(!screenshot){
+
+document.getElementById("message").innerText =
+"Please upload payment screenshot.";
+
+return;
+
+}
 
 let payments =
 JSON.parse(localStorage.getItem("adnovaPayments")) || [];
 
 const newPayment = {
 
-user: loggedInUser.email,
+name: loggedInUser.name,
+
+email: loggedInUser.email,
 
 plan: selectedPlan.plan,
 
@@ -194,7 +238,7 @@ price: selectedPlan.price,
 
 transactionId: transactionId,
 
-paymentMethod: paymentMethod,
+screenshotName: screenshot.name,
 
 status: "Pending",
 
@@ -209,19 +253,12 @@ localStorage.setItem(
 JSON.stringify(payments)
 );
 
-document.getElementById("message").innerHTML =
-"Payment submitted successfully!";
+document.getElementById("message").innerText =
+"Payment submitted successfully. Waiting for Admin approval.";
 
 document.getElementById("paymentForm").reset();
 
 });
-
-
-function goBack(){
-
-window.location.href="plans.html";
-
-}
 
 </script>
 
