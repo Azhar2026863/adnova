@@ -3,74 +3,227 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment</title>
+
+<title>Payment - AdNova</title>
 
 <style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
 body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-margin:0;
-padding:20px;
+    background:#f4f6f9;
+    min-height:100vh;
 }
+
+.header{
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
 .container{
-max-width:400px;
-margin:auto;
-background:#fff;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.2);
+    width:90%;
+    max-width:500px;
+    margin:30px auto;
 }
+
+.box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
 h2{
-text-align:center;
-color:#0077ff;
+    text-align:center;
+    margin-bottom:20px;
 }
-.info{
-background:#eef6ff;
-padding:15px;
-border-radius:8px;
-margin-bottom:20px;
+
+.plan{
+    background:#f1f5f9;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
 }
+
+.plan p{
+    margin:8px 0;
+}
+
 input{
-width:100%;
-padding:12px;
-margin:10px 0;
-box-sizing:border-box;
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
 }
+
 button{
-width:100%;
-padding:12px;
-background:#0077ff;
-color:white;
-border:none;
-border-radius:5px;
-font-size:18px;
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.back{
+    background:#6b7280;
+}
+
+.message{
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
 }
 </style>
-
 </head>
+
 <body>
+
+<div class="header">
+<h1>AdNova Payment</h1>
+</div>
 
 <div class="container">
 
-<h2>Payment Details</h2>
+<div class="box">
 
-<div class="info">
-<b>Account Name:</b><br>
-Muhammad Sajid<br><br>
+<h2>Confirm Your Plan</h2>
 
-<b>Easypaisa Number:</b><br>
-03482529433
-</div>
+<div class="plan">
 
-<input type="text" placeholder="Enter Transaction ID" required>
+<p><strong>Plan:</strong>
+<span id="planName">Loading...</span>
+</p>
 
-<p><b>Upload Payment Screenshot</b></p>
-
-<input type="file">
-
-<button>Submit Payment</button>
+<p><strong>Price:</strong>
+<span id="planPrice">Loading...</span>
+</p>
 
 </div>
+
+<form id="paymentForm">
+
+<input
+type="text"
+id="transactionId"
+placeholder="Enter Transaction ID"
+required
+>
+
+<input
+type="text"
+id="paymentMethod"
+placeholder="Payment Method (e.g. JazzCash)"
+required
+>
+
+<button type="submit">
+Submit Payment
+</button>
+
+</form>
+
+<button class="back" onclick="goBack()">
+Back to Plans
+</button>
+
+<div class="message" id="message"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const loggedInUser =
+JSON.parse(localStorage.getItem("adnovaLoggedInUser"));
+
+const selectedPlan =
+JSON.parse(localStorage.getItem("adnovaSelectedPlan"));
+
+if(!loggedInUser){
+
+window.location.href="login.html";
+
+}
+
+if(!selectedPlan){
+
+window.location.href="plans.html";
+
+}
+
+document.getElementById("planName").innerText =
+selectedPlan.plan;
+
+document.getElementById("planPrice").innerText =
+selectedPlan.price;
+
+
+document.getElementById("paymentForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const transactionId =
+document.getElementById("transactionId").value.trim();
+
+const paymentMethod =
+document.getElementById("paymentMethod").value.trim();
+
+let payments =
+JSON.parse(localStorage.getItem("adnovaPayments")) || [];
+
+const newPayment = {
+
+user: loggedInUser.email,
+
+plan: selectedPlan.plan,
+
+price: selectedPlan.price,
+
+transactionId: transactionId,
+
+paymentMethod: paymentMethod,
+
+status: "Pending",
+
+date: new Date().toLocaleString()
+
+};
+
+payments.push(newPayment);
+
+localStorage.setItem(
+"adnovaPayments",
+JSON.stringify(payments)
+);
+
+document.getElementById("message").innerHTML =
+"Payment submitted successfully!";
+
+document.getElementById("paymentForm").reset();
+
+});
+
+
+function goBack(){
+
+window.location.href="plans.html";
+
+}
+
+</script>
 
 </body>
 </html>
