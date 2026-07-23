@@ -1,77 +1,112 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+}
 
-    body {
-      background: #f4f6f9;
-      color: #222;
-    }
+.header{
+background:#1f2937;
+color:white;
+padding:20px;
+text-align:center;
+font-size:24px;
+}
 
-    .header {
-      background: #1f2937;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+.container{
+padding:20px;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: 25px auto;
-      padding: 15px;
-    }
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-bottom: 25px;
-    }
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.15);
+text-align:center;
+}
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      text-align: center;
-    }
+.card h2{
+margin:10px 0;
+}
 
-    .card h3 {
-      color: #555;
-      margin-bottom: 10px;
-    }
+.btn{
+display:inline-block;
+margin-top:10px;
+padding:10px 20px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:6px;
+}
 
-    .card p {
-      font-size: 28px;
-      font-weight: bold;
-    }
+.footer{
+margin-top:30px;
+padding:15px;
+background:#1f2937;
+color:white;
+text-align:center;
+}
+</style>
 
-    .section {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    }
+</head>
+<body>
 
-    .section h2 {
-      margin-bottom: 15px;
-    }
+<div class="header">
+<h1>Admin Dashboard</h1>
+</div>
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+<div class="container">
 
-    th, td {
-      padding:
+<div class="cards">
+
+<div class="card">
+<h2>Users</h2>
+<p>120</p>
+<a href="#" class="btn">Open</a>
+</div>
+
+<div class="card">
+<h2>Deposit</h2>
+<p>25</p>
+<a href="#" class="btn">Open</a>
+</div>
+
+<div class="card">
+<h2>Withdrawal</h2>
+<p>10</p>
+<a href="#" class="btn">Open</a>
+</div>
+
+<div class="card">
+<h2>Settings</h2>
+<a href="#" class="btn">Open</a>
+</div>
+
+<div class="card">
+<h2>Logout</h2>
+<a href="#" class="btn">Logout</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Admin Dashboard
+</div>
+
+</body>
+</html>
